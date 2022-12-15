@@ -1,0 +1,15 @@
+# This file is used to map the paths
+# that are represented in the OpenAPI docs
+openapi: 3.0.0
+info:
+  description: Nodejs Microservice (API) Scaffold
+  version: 1.0.0
+  title: User API DOCS
+servers:
+  - url: /api/v1
+
+paths:
+  /sample-path/{sampleCode}:
+    $ref: "../routes/sample-path.with.key.routes.yaml"
+  /sample-path:
+    $ref: "../routes/sample-path.routes.yaml"

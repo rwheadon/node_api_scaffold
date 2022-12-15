@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "26248c66-40af-4b77-a6c1-6a3afd83df93",
+		"name": "scaffold-requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24488874"
+	},
+	"item": [
+		{
+			"name": "find sample by key",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3088/api/v1/sample-path?sampleCode=22",
+					"host": [
+						"localhost"
+					],
+					"port": "3088",
+					"path": [
+						"api",
+						"v1",
+						"sample-path"
+					],
+					"query": [
+						{
+							"key": "sampleCode",
+							"value": "22"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create sample",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"test-sample\",\r\n    \"description\": \"some sort of something\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3088/api/v1/sample-path",
+					"host": [
+						"localhost"
+					],
+					"port": "3088",
+					"path": [
+						"api",
+						"v1",
+						"sample-path"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update sample",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"updated-name\",\r\n    \"description\": \"updated sample description\",\r\n    \"sampleCode\": \"456f-jc3y-0s44-9x9o\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3088/api/v1/sample-path",
+					"host": [
+						"localhost"
+					],
+					"port": "3088",
+					"path": [
+						"api",
+						"v1",
+						"sample-path"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete sample",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3088/api/v1/sample-path/xf54-345r-23g0-xrpf",
+					"host": [
+						"localhost"
+					],
+					"port": "3088",
+					"path": [
+						"api",
+						"v1",
+						"sample-path",
+						"xf54-345r-23g0-xrpf"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

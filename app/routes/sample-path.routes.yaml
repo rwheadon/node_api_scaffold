@@ -1,0 +1,125 @@
+# this file fulfills user requests on the /sample-path path
+# GET : the assumed transport of GET is query string params
+get:
+  summary: Returns a single sample data object.
+  operationId: getSampleData
+  description: Sample GET operation. uses additional parameters if provided.
+  parameters:
+    - in: query
+      name: sampleCode
+      schema:
+        type: string
+      required: false
+      description: A uuid of the sample data (Optional if sampleName is present)
+    - in: query
+      name: sampleName
+      schema:
+        type: string
+      required: false
+      description: String sampleName of the sample data (Optional if sampleCode is present)
+  tags:
+    - Sample
+  responses:
+    "200":
+      description: Returns single sample if found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sampleCode:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              updatedAt:
+                type: string
+              createdAt:
+                type: string
+    default:
+      $ref: "../api/responses/server-error.yaml"
+
+post:
+  summary: creates a new sample data object
+  operationId: createSample
+  description: Creates a new sample. Errors if unique constraint collision.
+  tags:
+    - Sample
+  requestBody:
+    content:
+      "application/json":
+        schema:
+          properties:
+            name:
+              description: sample object name/title
+              type: string
+            description:
+              description: sample object description
+              type: string
+          required:
+            - name
+            - description
+  responses:
+    "200":
+      description: Returns created sample record
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sampleCode:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              updatedAt:
+                type: string
+              createdAt:
+                type: string
+    default:
+      $ref: "../api/responses/server-error.yaml"
+
+put:
+  summary: updates a sample object
+  operationId: updateSample
+  description: Updates a sample. Errors if not found or permissions are wrong. shcema fields passed in will be updated.
+  tags:
+    - Sample
+  requestBody:
+    content:
+      "application/json":
+        schema:
+          properties:
+            sampleCode:
+              description: sample key/uuid to be updated
+              type: string
+            name:
+              description: sample name
+              type: string
+            description:
+              description: sample description
+              type: string
+          required:
+            - sampleCode
+  responses:
+    "200":
+      description: Returns updated sample record
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sampleCode:
+                type: string
+              name:
+                type: string
+              description:
+                type: string
+              updatedAt:
+                type: string
+              createdAt:
+                type: string
+    default:
+      $ref: "../api/responses/server-error.yaml"
