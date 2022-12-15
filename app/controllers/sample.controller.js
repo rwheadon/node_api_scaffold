@@ -25,9 +25,23 @@ async function getSampleData(req, res) {
         createdAt: new Date(),
         updatedAt: new Date(),
       };
+    } else if (req.query.sampleName) {
+      if (req.query.sampleName === "BOGUS NAME") {
+        throw new Error(
+          "No record found or you don't have necessary access to it."
+        );
+      }
+      sample = {
+        sampleCode: uuid.v4(),
+        name: req.query.sampleName,
+        description: "this is a non-descript sample of some sort.",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
     } else {
-      throw new Error("sampleCode is required");
+      throw new Error("sampleCode or sampleName is required");
     }
+    console.warn(`***************** sample data : ${JSON.stringify(sample)}`);
     res.status(200);
     res.json(sample);
   } catch (error) {
@@ -35,7 +49,7 @@ async function getSampleData(req, res) {
     res.status(400);
     res.json({
       message: "could not get the sample data",
-      genericError: error,
+      genericError: error.message,
     });
   }
   return;
@@ -59,11 +73,18 @@ async function updateSample(req, res) {
 }
 
 async function deleteSample(req, res) {
-  console.log("delete req.params %s", JSON.stringify(req.params));
-  res.status(404);
-  res.json({
-    message: `Sample deletion not yet implemented [${req.params.sampleCode}]`,
-  });
+  if (req.params.sampleCode) {
+    console.log("delete req.params %s", JSON.stringify(req.params));
+    res.status(404);
+    res.json({
+      message: `Sample deletion not yet implemented [${req.params.sampleCode}]`,
+    });
+  } else {
+    res.status(500);
+    res.json({
+      message: `There was an error running sampleCode deletion for "${req.params.sampleCode}"`,
+    });
+  }
 }
 
 module.exports = {
