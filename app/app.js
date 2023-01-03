@@ -3,9 +3,10 @@ const swaggerUi = require("swagger-ui-express");
 const swaggerParser = require("swagger-parser");
 const { connector } = require("swagger-routes-express");
 const { api } = require("./api");
+const { logger } = require("./logging");
 
 const makeApp = async () => {
-  console.log("Making app...");
+  logger.info("Making app...");
   const parser = new swaggerParser();
   // this is the path to your OpenAPI file
   const apiDefinition = await parser.validate("./app/api/openapi.yaml");

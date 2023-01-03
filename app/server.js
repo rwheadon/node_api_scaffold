@@ -1,5 +1,6 @@
 const makeApp = require("./app");
 const port = 3088;
+const { logger } = require("./logging");
 
 makeApp()
   .then((app) => {
@@ -7,8 +8,11 @@ makeApp()
     app.listen(port);
   })
   .then(() => {
-    console.log(`App running on port ${port}...`);
+    logger.info(`App running on port ${port}...`);
   })
   .catch((err) => {
-    console.error("Caught an error", err);
+    logger.log({
+      level: "error",
+      message: ("Caught an error %s", err),
+    });
   });

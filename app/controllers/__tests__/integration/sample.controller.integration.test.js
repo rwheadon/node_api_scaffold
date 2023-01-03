@@ -1,6 +1,7 @@
 const controllers = require("../../../controllers");
 const uuid = require("uuid");
 const { faker } = require("@faker-js/faker");
+const { logger } = require("../../../logging");
 
 const mockRequest = (sessionData, body, params, query) => ({
   session: { data: sessionData },
@@ -17,8 +18,19 @@ const mockResponse = () => {
 };
 
 describe("INTEGRATION : sample controller tests", () => {
+  logger.log({
+    level: "info",
+    message: "!!!! RUNNING SAMPLE CONTROLLER INTEGRATION TESTS !!!!",
+  });
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  afterAll(() => {
+    logger.log({
+      level: "info",
+      message: "!!!! FINISHED SAMPLE CONTROLLER INTEGRATION TESTS !!!!",
+    });
   });
 
   test("GET Should return a sample object if sampleCode is provided", async () => {

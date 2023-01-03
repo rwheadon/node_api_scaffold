@@ -8,14 +8,15 @@
     "start": "node ./app/server.js",
     "devstart": "nodemon ./app/server.js"
   },
-  "author": "", 
+  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2",
     "swagger-parser": "^10.0.3",
     "swagger-routes-express": "^3.3.2",
     "swagger-ui-express": "^4.6.0",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
